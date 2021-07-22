@@ -84,8 +84,6 @@ def calculate_lines(image, lines):
             for i in range(len(right_line)):
                 right_line[i] = right_prev[i] - (left_line[i] - left_prev[i])
             right_prev = right_line.copy()
-        print('RIGHT: ', right_line)
-        print('LEFT: ', left_line)
         return np.array([left_line, right_line])
 
 def display_lines(image, lines, ok, msg):
@@ -119,7 +117,6 @@ def process_frame(frame):
     lines = cv2.HoughLinesP(roi, 1, np.pi / 180, 20, np.array([()]), minLineLength=10, maxLineGap=5)
 
     a_lines = calculate_lines(frame, lines)
-    print(a_lines)
 
     ok, msg = check_lines(a_lines)
 
